@@ -1,0 +1,78 @@
+//c++ prg for generating o's and 1's randomly for graph edges
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{		
+/* Printing on console */
+	// filestream variable file
+    	fstream file;
+    	string word, t, q, filename;
+  
+    	// filename of the file
+    	filename = "kiran.txt";
+  
+   	 // opening file
+    	file.open(filename.c_str());
+  
+    	// extracting words from the file
+    	bool space=true;
+    	while (file >> word)
+    	{
+    	    	// displaying content with random 0 or 1's
+        	cout << word; //printing the number
+        	
+        	if(space)
+        		cout<<" ";  //printing space
+        	else
+        	{
+        		int lb=10,ub=30;
+        		int z=(rand() % (ub - lb + 1)) + lb; //calculating random number with upper and lower bound
+        		if(z<20)                             // deciding to make it 0 or 1
+        			z=1;
+        		else
+        			z=0;
+        		cout<<" "<<z;				// Printing random number generated
+        		cout<<endl;
+        	}
+        	space=!space;					// modifying space variable to print newline
+   	}
+   	
+   	
+   	file.close();
+   	
+/* Printing to new file*/   	
+
+   	// Input file stream object to
+	// read from file.txt
+	ifstream in("kiran.txt");
+	
+	// Output file stream object to
+	// write to file2.txt
+	ofstream f("a_sign.txt");
+	
+	// Reading file.txt completely using
+	// END OF FILE eof() method
+	while(!in.eof())
+	{
+		// string to extract line from
+		// file.txt
+		string text;
+		
+		// extracting line from file.txt
+		getline(in, text);
+		
+		// Writing the extracted line in
+		// file2.txt
+		int lb=10,ub=30;
+        	int z=(rand() % (ub - lb + 1)) + lb; //calculating random number with upper and lower bound
+        	if(z<20)                             // deciding to make it 0 or 1
+        		z=1;
+        	else
+        		z=0;
+		f << text << " " << z << endl;
+}
+
+	return 0;
+}
